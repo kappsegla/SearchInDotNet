@@ -29,6 +29,27 @@ namespace ConsoleApp2
         public void GetLastNameWithSpan() => parser.GetLastNameWithSpan(fullName);
     }
 
+    [RankColumn]
+    [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
+    [MemoryDiagnoser]
+    public class BenchmarkSpan
+    {
+        [Benchmark(Baseline = true)]
+        public byte Create1()
+        {
+            var array = new byte[] { 1, 2, 3, 4 };
+            return array[0];
+        }
+
+        [Benchmark]
+        public byte Create2()
+        {
+            ReadOnlySpan<byte> array = new byte[] { 1, 2, 3, 4 };
+            return array[0];
+        }
+    }
+
+
     class NameParser
     {
         public string GetLastName(string fullName)
@@ -113,11 +134,13 @@ namespace ConsoleApp2
         static async Task Main(string[] args)
         {
 
+            Task.Run(() => new MultiThreading().Run());
+            Console.Read();
             //new RegexExample().Run();
             //new Index().BuildIndex();
             //new IndexAndSearchExample().Run();
-            new LuceneExample().Run();
-            //var summary = BenchmarkRunner.Run(typeof(Benchmark));
+            //new LuceneExample().Run();
+            //var summary = BenchmarkRunner.Run(typeof(BenchmarkSpan));
         }
     }
 }
