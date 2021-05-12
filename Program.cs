@@ -3,6 +3,7 @@ using ConsoleApp2.Examples;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace ConsoleApp2
 {
@@ -16,6 +17,11 @@ namespace ConsoleApp2
             //DebugExample.Run();
 
             var result = new DebugLinq().MyQuery(DebugLinq.employees);
+
+            foreach (var e in result)
+            {
+                Console.WriteLine(e);
+            }
 
             //To run benchmark compile with release and start without debugger, Ctrl + F5
             //var summary = BenchmarkRunner.Run(typeof(BenchmarkSpan));

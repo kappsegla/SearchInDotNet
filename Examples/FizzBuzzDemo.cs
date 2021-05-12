@@ -6,27 +6,25 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp2.Examples
 {
-    class FizzBuzzDemo
+    public class FizzBuzzDemo
     {
-        public static string FizzBuzz(int i)
+        public string FizzBuzz(int i)
         {
-            if (i % 3 == 0 && i % 5 == 0)
+            var mod3 = i % 3;
+            var mod5 = i % 5;
+            if (mod3 == 0 && mod5 == 0)
             {
                 return "FizzBuzz";
             }
-            else if (i % 3 == 0)
+            else if (mod3 == 0)
             {
                 return "Fizz";
             }
-            else if (i % 5 == 0)
+            else if (mod5 == 0)
             {
                 return "Buzz";
             }
-            else
-            {
-                return "" + i;
-            }
+            return "" + i;
         }
     }
-
 }

@@ -30,9 +30,9 @@ namespace ConsoleApp2.Examples
         {
             var avgSalary = employees.Select(e => e.Salary).Average();
             return employees
-                .Where(e => e.Gender == "Male")
-                .Take(3)
+                .Where(e => e.Gender.Equals("Male", StringComparison.OrdinalIgnoreCase))
                 .Where(e => e.Salary > avgSalary)
+                .Take(3)
                 .OrderBy(e => e.Age);
         }
 
